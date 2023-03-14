@@ -4,7 +4,6 @@
 //  message to check that everything is working right.
 
 import express from 'express';
-import path from 'path'
 const app = express()
 
 // Body parser Middleware:
