@@ -1,7 +1,6 @@
 import express from "express";
-import fetch from "isomorphic-fetch";
-import fetch from "node-fetch"
-// import keys from "./sources/keys.js";
+import fetch from "node-fetch";
+import keys from "./sources/keys.js";
 const app = express();
 
 // Body parser Middleware:
@@ -20,7 +19,7 @@ app.post("/weather", async (req, res) => {
     );
     const jsonData = await data.json();
     const temperature = jsonData.main.temp;
-    res.send({ City: cityName, Temperature: temperature });
+    res.send({ city: cityName, temperature: temperature });
   } catch {
     res.status(400).send({ weatherText: "City is not found!" });
   }
