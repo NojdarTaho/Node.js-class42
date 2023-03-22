@@ -12,8 +12,9 @@ app.get("/", (req, res) => {
 
 // Create a post route that has /weather as an endpoint:
 app.post("/weather", async (req, res) => {
+  const cityName = req.body.cityName;
+
   try {
-    const cityName = req.body.cityName;
     const data = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${keys.API_KEY}&units=metric`
     );
@@ -21,7 +22,7 @@ app.post("/weather", async (req, res) => {
     const temperature = jsonData.main.temp;
     res.send({ city: cityName, temperature: temperature });
   } catch {
-    res.status(400).send({ weatherText: "City is not found!" });
+    res.status(400).send({ weatherText: `The city ${cityName} is not found!` });
   }
 });
 
